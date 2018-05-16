@@ -17,6 +17,7 @@
 		font-size: 100%;
 		font: inherit;
 		vertical-align: baseline;
+		
 	}
 
 	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
@@ -47,6 +48,10 @@
 
 	body {
 		-webkit-text-size-adjust: none;
+	}
+	
+	body div {
+	  font-size: 11pt;
 	}
 
 /* Box Model */
@@ -1588,7 +1593,7 @@
 		font-size: 13pt;
 	}
 
-		@media screen and (max-width: 1680px) {
+		@media screen and (max-width: 1920px) {
 
 			html {
 				font-size: 11pt;
@@ -1607,7 +1612,7 @@
 		@media screen and (max-width: 980px) {
 
 			html {
-				font-size: 12pt;
+				font-size: 11pt;
 			}
 
 		}

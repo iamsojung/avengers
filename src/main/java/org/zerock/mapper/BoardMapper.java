@@ -11,4 +11,6 @@ public interface BoardMapper {
 
 	public int getTotal(Criteria cri);
 	
+	public int getNewIcon(BoardVO vo);
+	
 }

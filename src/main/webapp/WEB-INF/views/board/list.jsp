@@ -10,9 +10,11 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet" href="/resources/css/main.css" />
+
+
 <style>
 .outer {
-	padding: 10%;
+	padding: 5%;
 	background-color: #ffffff;
 	background-color: rgba(255, 255, 255, 0.6);
 }
@@ -32,7 +34,7 @@
 .pagination a {
 	color: black;
 	float: left;
-	padding: 8px 16px;
+	padding: 8px 5px;
 	text-decoration: none;
 }
 
@@ -41,15 +43,15 @@
 	color: white;
 }
 
-.pagination a:hover:not (.active ) {
-	background-color: pink;
-}
+.pagination a:hover:not(
+.active){background-color:pink;}
 
 .search {
 	width: 33%;
 	margin-left: 33%;
 }
 </style>
+
 </head>
 <body class="subpage">
 
@@ -89,22 +91,31 @@
 				<table>
 					<thead>
 						<th>Bno</th>
-						<th style="width: 30%">Title</th>
+						<th style="width: 50%">Title</th>
 						<th>Writer</th>
 						<th style="text-align: right">Regdate</th>
-						<th style="text-align: right">updatedate</th>
+
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach items="${list}" var="vo">
 							<tr>
 								<td><c:out value="${vo.bno}" /></td>
-								<td><c:out value="${vo.title}" /></td>
+								<td><c:out value="${vo.title}" /> <c:if
+										test="${vo.newIcon==1}">
+
+										<img src="/resources/images/new.jpg">
+									</c:if>
+									</div></td>
+
+
 								<td><c:out value="${vo.writer}" /></td>
-								<td style="text-align: right"><fmt:formatDate
-										value="${vo.regdate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-								<td style="text-align: right"><fmt:formatDate
-										value="${vo.updatedate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+								<td style="text-align: right"><c:if test="${vo.newIcon==1}">
+										<fmt:formatDate value="${vo.regdate}" pattern="HH:mm:ss" />
+									</c:if> <c:if test="${vo.newIcon!=1}">
+										<fmt:formatDate value="${vo.regdate}" pattern="yyyy-MM-dd" />
+									</c:if></td>
+
 							</tr>
 						</c:forEach>
 					</tfoot>
@@ -113,7 +124,7 @@
 			<div class="center">
 				<div class="pagination">
 					<c:if test="${pm.prev}">
-						<a href="/board/list?page=${pm.start-1}">prev</a>
+						<a href="/board/list?page=${pm.start-1}"><<</a>
 					</c:if>
 
 					<c:forEach begin="${pm.start}" end="${pm.end}" var="idx">
@@ -122,20 +133,33 @@
 					</c:forEach>
 
 					<c:if test="${pm.next}">
-						<a href="/board/list?page=${pm.end+1}">next</a>
+						<a href="/board/list?page=${pm.end+1}">>></a>
 					</c:if>
 				</div>
 			</div>
 			<form method="post" action="#">
-                <div class="row uniform">
-                    <div class="9u 12u$(small)">
-                        <input type="text" name="query" id="query" value="" placeholder="Query" />
-                    </div>
-                    <div class="3u$ 12u$(small)">
-                        <input type="submit" value="Search" class="fit" />
-                    </div>
-                </div>
-            </form>
+				<div class="row uniform">
+					<div class="3u 12u$(small)">
+						<div class="select-wrapper">
+							<select name="category" id="category">
+								<option value="">- Category -</option>
+								<option value="1">Manufacturing</option>
+								<option value="1">Shipping</option>
+								<option value="1">Administration</option>
+								<option value="1">Human Resources</option>
+							</select>
+						</div>
+					</div>
+					<div class="3u 12u$(small)">
+						<input type="text" name="query" id="query" value=""
+							placeholder="Query" />
+					</div>
+					<div class="3u$ 12u$(small)">
+						<input type="submit" value="Search" class="fit" />
+					</div>
+				</div>
+			</form>
+
 			<!-- <!-- Break -->
 			<!-- <div class="search">
 				<div class="6u 12u$(xsmall)">

@@ -20,7 +20,7 @@ public class BoardMapperTest {
 	
 	@Test
 	public void getList() {
-		Criteria cri = new Criteria(3);
+		Criteria cri = new Criteria(1);
 		log.info(mapper.list(cri));
 	}
 
